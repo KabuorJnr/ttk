@@ -285,6 +285,32 @@ function initDatabase(db) {
     CREATE INDEX IF NOT EXISTS idx_contractor_perf ON contractor_performance(contractor_id);
   `);
 
+  // Seed all 47 Kenya counties (INSERT OR IGNORE so re-runs are safe)
+  const COUNTIES = [
+    [1,'Mombasa','MSA','Coast'],[2,'Kwale','KWL','Coast'],[3,'Kilifi','KLF','Coast'],
+    [4,'Tana River','TNR','Coast'],[5,'Lamu','LMU','Coast'],[6,'Taita-Taveta','TTV','Coast'],
+    [7,'Garissa','GRS','North Eastern'],[8,'Wajir','WJR','North Eastern'],[9,'Mandera','MND','North Eastern'],
+    [10,'Marsabit','MBT','Eastern'],[11,'Isiolo','ISL','Eastern'],[12,'Meru','MRU','Eastern'],
+    [13,'Tharaka-Nithi','THN','Eastern'],[14,'Embu','EMB','Eastern'],[15,'Kitui','KTU','Eastern'],
+    [16,'Machakos','MCK','Eastern'],[17,'Makueni','MKN','Eastern'],
+    [18,'Nyandarua','NYD','Central'],[19,'Nyeri','NYR','Central'],[20,'Kirinyaga','KRN','Central'],
+    [21,"Murang'a",'MRG','Central'],[22,'Kiambu','KMB','Central'],
+    [23,'Turkana','TRK','Rift Valley'],[24,'West Pokot','WPK','Rift Valley'],[25,'Samburu','SMB','Rift Valley'],
+    [26,'Trans-Nzoia','TNZ','Rift Valley'],[27,'Uasin Gishu','UGS','Rift Valley'],
+    [28,'Elgeyo-Marakwet','ELM','Rift Valley'],[29,'Nandi','NND','Rift Valley'],
+    [30,'Baringo','BRG','Rift Valley'],[31,'Laikipia','LKP','Rift Valley'],
+    [32,'Nakuru','NKR','Rift Valley'],[33,'Narok','NRK','Rift Valley'],
+    [34,'Kajiado','KJD','Rift Valley'],[35,'Kericho','KRC','Rift Valley'],[36,'Bomet','BMT','Rift Valley'],
+    [37,'Kakamega','KKM','Western'],[38,'Vihiga','VHG','Western'],[39,'Bungoma','BGM','Western'],[40,'Busia','BSA','Western'],
+    [41,'Siaya','SYA','Nyanza'],[42,'Kisumu','KSM','Nyanza'],[43,'Homa Bay','HMB','Nyanza'],
+    [44,'Migori','MGR','Nyanza'],[45,'Kisii','KSI','Nyanza'],[46,'Nyamira','NYM','Nyanza'],
+    [47,'Nairobi','NRB','Nairobi'],
+  ];
+  const insertCounty = db.prepare('INSERT OR IGNORE INTO counties (id, name, code, region) VALUES (?, ?, ?, ?)');
+  for (const c of COUNTIES) {
+    insertCounty.run(...c);
+  }
+
   console.log('[DB] Database initialized successfully');
 }
 
