@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "{ttk.db,transparent.js,seed.js,node_modules/sql.js/dist/sql-wasm.wasm}",
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/index.js" }
+  ]
+}

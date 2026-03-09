@@ -1,0 +1,4 @@
+node_modules/
+ttk.db
+.vercel
+*.log

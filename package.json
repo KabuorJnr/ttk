@@ -1,0 +1,23 @@
+{
+  "name": "transparent-tenders-ke",
+  "version": "1.0.0",
+  "description": "Transparent Tenders Kenya - Digital public procurement platform for all 47 counties and national government",
+  "main": "transparent.js",
+  "scripts": {
+    "start": "node transparent.js",
+    "dev": "node transparent.js",
+    "seed": "node seed.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "keywords": ["procurement", "transparency", "kenya", "tenders", "blockchain", "anti-corruption"],
+  "license": "MIT",
+  "dependencies": {
+    "sql.js": "^1.11.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "express": "^4.21.0",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.4.0",
+    "uuid": "^10.0.0"
+  }
+}
